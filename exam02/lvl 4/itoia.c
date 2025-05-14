@@ -1,45 +1,45 @@
+#include "stdlib.h"
 
-#include <stdio.h>
-
-int	nbnb(int nb)
+int	ft_count_len(int nbr)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	if (nb <= 0)
-		len++;
-	while (nb != 0)
+	i = 0;
+	if (nbr <= 0)
+		i++;
+	while (nbr != 0)
 	{
-		nb = nb / 10;
-		len++;
+		nbr = nbr / 10;
+		i++;
 	}
-	return (len);
+	return (i);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int nbr)
 {
-	int		i;
-	char	*str;
+	int i;
+	int len;
+	long num;
+	char *str;
 
-	i = nbnb(n);
-	str = malloc(sizeof(char) * (i + 1));
+	num = nbr;
+	len = ft_count_len(nbr);
+	str = (char *)malloc((sizeof(char) * (len + 1)));
 	if (!str)
 		return (NULL);
-	str[i--] = '\0';
-	if (n == 0)
+	str[len] = '\0';
+	i = len - 1;
+	if (num < 0)
 	{
-		str[0] = '0';
-		return (str);
-	}
-	if (n < 0)
 		str[0] = '-';
-	while (n != 0)
-	{
-		if (str[0] == '-')
-			str[i--] = '0' + -(n % 10);
-		else
-			str[i--] = '0' + (n % 10);
-		n = n / 10;
+		num = -num;
 	}
+	while (num > 9)
+	{
+		str[i] = num % 10 + '0';
+		num = num / 10;
+		i--;
+	}
+	str[i] = num + '0';
 	return (str);
 }
