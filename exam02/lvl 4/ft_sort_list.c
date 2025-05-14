@@ -1,45 +1,23 @@
-#include <stdlib.h>
 #include "list.h"
-
-void	ft_swap(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
+#include "unistd.h"
 
 t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 {
-	t_list	*tmp;
+	int tmp;
+	t_list *head;
 
-	tmp = lst;
-	while (lst->next != NULL)
+	head = tmp;
+	while (lst != NULL && lst->next != NULL)
 	{
-		if (((*cmp)(lst->data, lst->next->data)) == 0)
+		if ((*cmp)(lst->data, lst->next->data) == 0)
 		{
-			ft_swap(&lst->data, &lst->next->data);
-			lst = tmp;
+			tmp = lst->data;
+			lst->data = lst->next->data;
+			lst->next->data = tmp;
+			lst = head;
 		}
 		else
 			lst = lst->next;
 	}
-	lst = tmp;
-	return (lst);
+	return (head);
 }
-
--------------
-  FILE.H
-
-  #ifndef SORT_LIST_H
-# define SORT_LIST_H
-
-typedef struct s_list
-{
-	int				data;
-	struct s_list	*next;
-}	t_list;
-
-#endif
-  
