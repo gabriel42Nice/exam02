@@ -1,59 +1,45 @@
-#include <unistd.h> 
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	is_space(char c)
-{
-	if ((c == ' ') || (c == '\t'))
-		return (1);
-	return (0);
-}
-
-void	ft_print_first_word(char *str, int j)
-{
-	while (str[j] != '\0' && !is_space(str[j]))
-	{
-		ft_putchar(str[j]);
-		j++;
-	}
-}
+#include "unistd.h"
 
 void	rostring(char *str)
 {
 	int	i;
 	int	j;
 
-	j = 0;
-	while (str[j] != '\0' && is_space(str[j]))
-		j++;
-	i = j;
-	while (str[i] != '\0' && !is_space(str[i]))
+	i = 0;
+	while (str[i] && str[i] == ' ' || str[i] == '\t')
 		i++;
-	while (str[i] != '\0')
+	j = i;
+	while (str[i])
 	{
-		if (str[i] != '\0' && !is_space(str[i]) && is_space(str[i - 1]))
+		while (str[i] && str[i] != ' ' && str[i] != '\t')
+			i++;
+		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+			i++;
+		while ((str[i] && (str[i] != ' ' && str[i] != '\t')) && (str[i
+				- 1] == ' ' || str[i - 1] == '\t'))
 		{
-			while (str[i] != '\0' && !is_space(str[i]))
+			while (str[i] && (str[i] != ' ' && str[i] != '\t'))
 			{
-				ft_putchar(str[i]);
+				write(1, &str[i], 1);
 				i++;
 			}
-			ft_putchar(' ');
+			write(1, " ", 1);
+			i++;
 		}
-		i++;
 	}
-	ft_print_first_word(str, j);
+	while (str[j] && (str[j] != ' ' && str[j] != '\t'))
+	{
+		write(1, &str[j], 1);
+		j++;
+	}
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	if (argc > 1)
-		rostring(argv[1]);
-	ft_putchar('\n');
+	if (ac >= 2)
+	{
+		rostring(av[1]);
+	}
+	write(1, "\n", 1);
 	return (0);
 }
-
-
