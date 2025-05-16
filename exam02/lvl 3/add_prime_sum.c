@@ -20,20 +20,23 @@ int is_prime(int num)
 
 int ft_atoi(char *str)
 {
-    int res = 0, sign = 1, i = 0;
-    while (str[i] == ' ')
-        i++;
-    if (str[i] == '+' || str[i] == '-')
-        if (str[i++] == '-')
-            sign = -1;
-    while (str[i] && str[i] >= 48 && str[i] <= 57)
-    {
-        res *= 10;
-        res += str[i] - 48;
-        i++;
-    }
-    res *= sign;
-    return (res);
+	int i = 0;
+	int a = 0;
+
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		a = a * 10 + str[i] - '0';
+		i++;
+	}
+	return (a);
+}
+
+void ft_putnbr(int nb)
+{
+	if (nb > 9)
+		ft_putnbr(nb / 10);
+	char c = nb % 10 + '0';
+	write (1, &c, 1);
 }
 
 int main(int argc, char *argv[])
