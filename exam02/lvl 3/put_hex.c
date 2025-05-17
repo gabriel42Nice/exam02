@@ -3,15 +3,15 @@
 
 int ft_atoi(char *str)
 {
-    int atoi = 0;
+    int c = 0;
     int i = 0;
     
     while (str[i] && str[i] >= '0' && str[i] <= '9')
     {
-        atoi = atoi * 10 + str[i] - '0';
+        c = c * 10 + str[i] - '0';
         i++;
     }
-    return (atoi);
+    return (c);
 }
 
 void put_hex(int nbr)
