@@ -11,6 +11,8 @@ int ft_atoi_base(const char *str, unsigned int str_base)
         sign = -1;
         str++;
     }
+    else
+        sign = 1;
     while (str[i])
     {
         if (str[i] >= '0' && str[i] <= '9')
