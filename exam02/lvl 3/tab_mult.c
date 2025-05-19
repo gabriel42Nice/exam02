@@ -3,14 +3,15 @@
 
 int ft_atoi(char *s)
 {
-    int res = 0, i = 0;
-    while (s[i] && s[i] >= 48 && s[i] <= 57)
+    int i = 0;
+    int c = 0;
+
+    while (str[i] && (str[i] >= '0' && str[i] <= '9'))
     {
-        res *= 10;
-        res += s[i] - 48;
+        c = c * 10 + str[i] - '0';
         i++;
     }
-    return (res);
+    return (c);
 }
 
 void ft_putnbr(int nbr)
