@@ -35,7 +35,8 @@ int main(int ac, char **av)
         write(1, "\n", 1);
         return (0);
     }
-    int i = 1, n = ft_atoi(av[1]);
+    int i = 1; 
+    int n = ft_atoi(av[1]);
     
     while (i < 10)
     {
