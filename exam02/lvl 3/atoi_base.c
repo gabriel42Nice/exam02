@@ -1,5 +1,5 @@
 
-int ft_atoi_base(const char *str, unsigned int str_base)
+int ft_atoi_base(const char *str, int str_base)
 {
     int res = 0;
     int sign = 1;
